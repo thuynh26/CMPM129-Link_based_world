@@ -1,0 +1,30 @@
+  body {
+    font-family: 'Georgia', serif;
+    background-color: #f8f4ed;
+    color: #3e3e3e;
+    margin: 2rem;
+    line-height: 1.5; 
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #6b4c3b;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #d8bca6;
+    border: none;
+    cursor: pointer;
+    color: #3e3e3e;
+    transition: background-color 0.2s ease;
+  }
+
+  button:hover {
+    background-color: #bfa18f;
+  }
