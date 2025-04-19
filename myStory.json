@@ -19,10 +19,6 @@
                 {
                     "Text": "Go to the ingredients pantry",
                     "Target": "IngredPantry"
-                },
-                {
-                    "Text": "Testing",
-                    "Target": "DrawerUnlocked"
                 }
             ]
         },
@@ -51,12 +47,20 @@
             "Body": "",
             "Choices": [
                 {
-                    "Text": "Go to the back room",
-                    "Target": "BackRoom"
+                    "Text": "Grab milk",
+                    "Target": "IngredPantry",
+                    "GivesItem": "Milk",
+                    "RequiresItem": null
                 },
                 {
-                    "Text": "Go to the drink counter",
-                    "Target": "DrinkCounter"
+                    "Text": "Grab honey",
+                    "Target": "IngredPantry",
+                    "GivesItem": "Honey",
+                    "RequiresItem": null
+                },
+                {
+                    "Text": "Go to the back room",
+                    "Target": "BackRoom"
                 },
                 {
                     "Text": "Go back to the cafe front",
@@ -66,20 +70,54 @@
         },
 
         "BackRoom": {
-            "Body": "You’re inside the back room. A big storage sits on one end of the room and a dusty desk sits in the corner with a locked drawer.",
+            "Body": "You’re inside the back room. A big storage sits on one end of the room and a dusty desk sits in the corner with a drawer locked with a 4 pin code.",
             "Choices": [
+                {
+                    "Text": "Go to the garden",
+                    "Target": "GardenLocked"
+                },                  
                 {
                     "Text": "Check storage closet",
                     "Target": "StorageCloset"
                 },
                 {
-                    "Text": "Go back to the ingredients pantry",
-                    "Target": "IngredPantry"
+                    "Text": "Go back to the cafe front",
+                    "Target": "CafeFront"
                 },
                 { 
-                    "Text": "Enter code to unlock drawer", 
-                    "Target": "DrawerUnlocked", 
-                    "RequiresFlag": "HeardDrawerCode" 
+                    "Text": "Try a code to unlock drawer", 
+                    "Target": "BackRoom"
+                }
+            ]
+        },
+
+        "GardenLocked": {
+            "Body": "The gate to the garden is locked. You might need a key...",
+            "Choices": [
+                {
+                    "Text": "Unlock gate with key",
+                    "Target": "Garden",
+                    "RequiresItem": "GardenKey"
+                },
+                {
+                    "Text": "Return to cafe front",
+                    "Target": "CafeFront"
+                }
+            ]
+        },
+
+        "Garden": {
+            "Body": "You unlock the gate and step into the garden. The scent of fresh herbs fills the air.",
+            "Choices": [
+                {
+                "Text": "Pink mint leaves",             
+                "Target": "Garden",
+                "GivesItem": "Mint",
+                "RequiresItem": null
+                },
+                {
+                    "Text": "Go back to the cafe front",
+                    "Target": "CafeFront"
                 }
             ]
         },
@@ -88,13 +126,12 @@
             "Body": "The storage closet is cluttered. Something shiny catches your eye.",
             "Choices": [
                 { 
-                    "Text": "Pick up the old brass key", 
+                    "Text": "Pick up the rusty garden key", 
                     "Target": "BackRoom", 
-                    "GivesItem": "BrassKey" 
+                    "GivesItem": "GardenKey" 
                 }
             ]
         },
-
 
         "DrawerUnlocked": {
             "Body": "Inside the drawer, you find the old recipe book!"
