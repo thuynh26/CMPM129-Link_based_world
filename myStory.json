@@ -9,6 +9,10 @@
             "Body": "You stand at the front of your families cafe.",
             "Choices": [
                 {
+                    "Text": "Talk to customer",
+                    "Target": "CustomerOrder"
+                },
+                {
                     "Text": "Go to the drink counter",
                     "Target": "DrinkCounter"
                 },
@@ -19,6 +23,20 @@
                 {
                     "Text": "Testing",
                     "Target": "DrawerUnlocked"
+                }
+            ]
+        },
+
+        "CustomerOrder": {
+            "Body": "You chat with a regular. They say: 'Back in the day, your grandmother always made me this amazing sweet minty drink that always hit the spot.'",
+            "Choices": [
+                {
+                    "Text": "Go to the drink counter",
+                    "Target": "DrinkCounter"
+                },
+                {
+                    "Text": "Go to the ingredients pantry",
+                    "Target": "IngredPantry"
                 }
             ]
         },
@@ -42,7 +60,7 @@
                 },
                 {
                     "Text": "Go back to the cafe front",
-                    "Target": "Cafe Front"
+                    "Target": "CafeFront"
                 }
             ]
         },

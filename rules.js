@@ -61,14 +61,20 @@ class DrinkCounter extends Location {
 
         this.engine.show("<hr><b>Drink Maker:</b> Combine ingredients to make a drink!");
 
-        const ingredients = ["Espresso", "Milk", "Honey", "Mint"];
-
-        for (let ing of ingredients) {
-            this.engine.addChoice("Add: " + ing, {
-                action: "add",
-                ingredient: ing
-            });
+        const allIngredients = ["Espresso", "Milk", "Honey", "Mint"];
+        const availableIngredients = allIngredients.filter(ing => this.engine.hasItem(ing));
+        
+        if (availableIngredients.length === 0) {
+            this.engine.show("You don’t have any ingredients yet. Explore the café to find some!");
+        } else {
+            for (let ing of availableIngredients) {
+                this.engine.addChoice("Add: " + ing, {
+                    action: "add",
+                    ingredient: ing
+                });
+            }
         }
+        
 
         this.engine.addChoice("Serve drink", {
             action: "serve"
@@ -93,10 +99,7 @@ class DrinkCounter extends Location {
     
             this.selectedIngredients.clear();
     
-            // Delay the transition slightly to give time for text display (optional)
-            setTimeout(() => {
-                this.engine.gotoScene(Location, "CafeFront");
-            }, 300); // Adjust delay as needed, or remove if immediate return is fine
+            this.engine.gotoScene(Location, "CafeFront");
         }
     }
     
