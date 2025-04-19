@@ -1,11 +1,9 @@
 class Engine {
-
     static load(...args) {
         window.onload = () => new Engine(...args);
     }
 
     constructor(firstSceneClass, storyDataUrl) {
-
         this.firstSceneClass = firstSceneClass;
         this.storyDataUrl = storyDataUrl;
 
@@ -13,30 +11,39 @@ class Engine {
         this.output = document.body.appendChild(document.createElement("div"));
         this.actionsContainer = document.body.appendChild(document.createElement("div"));
 
-        fetch(storyDataUrl).then(
-            (response) => response.json()
-        ).then(
-            (json) => {
-                this.storyData = json;
-                this.gotoScene(firstSceneClass)
-            }
-        );
+        fetch(storyDataUrl).then(response => response.json()).then(json => {
+            this.storyData = json;
+            this.gotoScene(firstSceneClass, this.storyData.InitialLocation);
+        });
+
+        this.inventory = new Set();
+        this.eventFlags = new Set();
     }
 
     gotoScene(sceneClass, data) {
-        this.scene = new sceneClass(this);
-        this.scene.create(data);
+        let key = data;
+        let useClass = sceneClass;
+
+        if (typeof key === "string" && this.storyData.Locations && this.storyData.Locations[key]) {
+            const location = this.storyData.Locations[key];
+            if (location.Custom) {
+                useClass = DrinkCounter;
+            }
+        }
+
+        this.scene = new useClass(this);
+        this.scene.create(key);
     }
 
     addChoice(action, data) {
         let button = this.actionsContainer.appendChild(document.createElement("button"));
         button.innerText = action;
         button.onclick = () => {
-            while(this.actionsContainer.firstChild) {
-                this.actionsContainer.removeChild(this.actionsContainer.firstChild)
+            while (this.actionsContainer.firstChild) {
+                this.actionsContainer.removeChild(this.actionsContainer.firstChild);
             }
             this.scene.handleChoice(data);
-        }
+        };
     }
 
     setTitle(title) {
@@ -49,6 +56,22 @@ class Engine {
         div.innerHTML = msg;
         this.output.appendChild(div);
     }
+
+    hasItem(item) {
+        return this.inventory.has(item);
+    }
+
+    addItem(item) {
+        this.inventory.add(item);
+    }
+
+    setFlag(flag) {
+        this.eventFlags.add(flag);
+    }
+
+    hasFlag(flag) {
+        return this.eventFlags.has(flag);
+    }
 }
 
 class Scene {
@@ -56,11 +79,11 @@ class Scene {
         this.engine = engine;
     }
 
-    create() { }
+    create() {}
 
-    update() { }
+    update() {}
 
     handleChoice(action) {
-        console.warn('no choice handler on scene ', this);
+        console.warn('no choice handler on scene', this);
     }
 }

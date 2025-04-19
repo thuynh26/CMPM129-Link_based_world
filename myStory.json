@@ -1,153 +1,86 @@
 {
-    "Title": "The First Date",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "ChooseLocation",
+    "Title": "The Cafe",
+    "Credits": "Created by Tina Huynh using Adam Smith's StoryGraph Framework (amsmith@ucsc.edu).",
+    "InitialLocation": "CafeFront",
+
     "Locations": {
-        "ChooseLocation": {
-            "Body": "Todays finally the day of your first date! Where should your date meet you?",
+
+        "CafeFront": {
+            "Body": "You stand at the front of your families cafe.",
             "Choices": [
                 {
-                    "Text": "The new coffee shop",
-                    "Target": "CoffeeShop"
+                    "Text": "Go to the drink counter",
+                    "Target": "DrinkCounter"
                 },
                 {
-                    "Text": "The park",
-                    "Target": "Park"
+                    "Text": "Go to the ingredients pantry",
+                    "Target": "IngredPantry"
                 },
                 {
-                    "Text": "The art gallery",
-                    "Target": "ArtGallery"
+                    "Text": "Testing",
+                    "Target": "DrawerUnlocked"
                 }
             ]
         },
-        "CoffeeShop": {
-            "Body": "You arrive at the coffee shop and your date sits down with your drinks a little later.",
+
+        "DrinkCounter": {
+            "Body": "You stand at the drink counter",
+            "Choices" : [],
+            "Custom": true
+        },
+
+        "IngredPantry": {
+            "Body": "",
             "Choices": [
                 {
-                    "Text": "Talk about hobbies",
-                    "Target": "CoffeeShopHobbie"
+                    "Text": "Go to the back room",
+                    "Target": "BackRoom"
                 },
                 {
-                    "Text": "Ask about work",
-                    "Target": "CoffeeShopWork"
+                    "Text": "Go to the drink counter",
+                    "Target": "DrinkCounter"
+                },
+                {
+                    "Text": "Go back to the cafe front",
+                    "Target": "Cafe Front"
                 }
             ]
         },
-        "CoffeeShopHobbie": {
-            "Body": "You both rant about your love of movies and argue about how soup is not a beverage.",
+
+        "BackRoom": {
+            "Body": "You’re inside the back room. A big storage sits on one end of the room and a dusty desk sits in the corner with a locked drawer.",
             "Choices": [
                 {
-                    "Text": "Go to the Art Gallery",
-                    "Target": "ArtGallery"
+                    "Text": "Check storage closet",
+                    "Target": "StorageCloset"
                 },
                 {
-                    "Text": "Take a walk in the part",
-                    "Target": "Park"
-                },
-                {
-                    "Text": "End the date",
-                    "Target": "Goodbye"
-                }
-            ]
-        },
-        "CoffeeShopWork": {
-            "Body": "They go on a long rant about how their coworkers never refill the printer paper.",
-            "Choices": [
-              { "Text": "Change the vibe with a gallery visit", "Target": "ArtGallery" },
-              { "Text": "Suggest a calming walk in the park", "Target": "Park" },
-              { "Text": "End the date", "Target": "Goodbye" }
-            ]
-        },
-        "Park": {
-            "Body": "You and your date decide to take a walk through the park together. Birds are chirping, and the weather is... a bit gloomy.",
-            "Choices": [
-                {
-                    "Text": "Hold hands",
-                    "Target": "ParkHands"
-                },
-                {
-                    "Text": "Talk about childhood memories",
-                    "Target": "ParkMemories"
-                }
-            ]
-        },
-        "ParkHands": {
-            "Body": "You hold hands and laugh as a dog nearly steals your date’s scarf.",
-            "Choices": [
-                { 
-                    "Text": "Talk more over coffee", 
-                    "Target": "CoffeeShop" 
-                },
-                {
-                    "Text": "Check out the art gallery", 
-                    "Target": "ArtGallery" 
-                },
-                {
-                    "Text": "End the date", "Target": "Goodbye" 
-                }
-            ]
-        },
-          "ParkMemories": {
-            "Body": "You share stories about tree forts and playground drama. Your date tears up talking about their pet hamster 'Sir Nibbles'.",
-            "Choices": [
-                { 
-                    "Text": "Get some coffee", "Target": "CoffeeShop" 
+                    "Text": "Go back to the ingredients pantry",
+                    "Target": "IngredPantry"
                 },
                 { 
-                    "Text": "Gallery time", "Target": "ArtGallery" 
-                },
-                { 
-                    "Text": "End the date", "Target": "Goodbye" 
-                }
-            ]
-          },
-        "ArtGallery": {
-            "Body": "You wander into a quiet art gallery. You and your date discuss your favorite paintings.",
-            "Choices": [
-                {
-                    "Text": "Talk about creativity",
-                    "Target": "GalleryCreativity"
-                },
-                {
-                    "Text": "Crack a joke about abstract art",
-                    "Target": "GalleryJoke"
+                    "Text": "Enter code to unlock drawer", 
+                    "Target": "DrawerUnlocked", 
+                    "RequiresFlag": "HeardDrawerCode" 
                 }
             ]
         },
-        "GalleryCreativity": {
-            "Body": "They light up talking about their poetry zine. You nod along, wondering what a zine is.",
+
+        "StorageCloset": {
+            "Body": "The storage closet is cluttered. Something shiny catches your eye.",
             "Choices": [
                 { 
-                    "Text": "Grab coffee together", 
-                    "Target": "CoffeeShop" 
-                },
-                {
-                    "Text": "Take a stroll in the park",
-                    "Target": "Park" 
-                },
-                { 
-                    "Text": "End the date", "Target": "Goodbye" 
+                    "Text": "Pick up the old brass key", 
+                    "Target": "BackRoom", 
+                    "GivesItem": "BrassKey" 
                 }
             ]
         },
-          "GalleryJoke": {
-            "Body": "You joke that the painting reminds you of your spilled spaghetti. They chuckle... but then keep explaining the symbolism for 20 minutes.",
-            "Choices": [
-                { 
-                    "Text": "Grab a drink at the coffee shop", "Target": "CoffeeShop" 
-                },
-                { 
-                    "Text": "Change the scene with a walk", 
-                    "Target": "Park" 
-                },
-                {
-                    "Text": "End the date", "Target": "Goodbye" 
-                }
-            ]
-        },
-        "Goodbye": {
-            "Body": "The date is wrapping up. You share a smile and part ways while still trying to process if they truly believed that pigeons are government spies. They seemed very firm on that fact... you can make that work.",
-            "Choices": []
+
+
+        "DrawerUnlocked": {
+            "Body": "Inside the drawer, you find the old recipe book!"
         }
+
     }
 }
