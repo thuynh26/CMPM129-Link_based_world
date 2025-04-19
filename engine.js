@@ -57,6 +57,7 @@ class Engine {
         this.output.appendChild(div);
     }
 
+    // Inventory system functions - check and update items
     hasItem(item) {
         return this.inventory.has(item);
     }
@@ -65,6 +66,7 @@ class Engine {
         this.inventory.add(item);
     }
 
+    // Event unlock functions - check and update event flags
     setFlag(flag) {
         this.eventFlags.add(flag);
     }

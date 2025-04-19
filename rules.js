@@ -67,6 +67,7 @@ class Location extends Scene {
     }
 }
 
+// Location-specific interactive mechanism - drink making
 class DrinkCounter extends Location {
     create(key) {
         super.create(key);
@@ -87,18 +88,37 @@ class DrinkCounter extends Location {
             this.update(); // Refresh options
 
         } else if (choice.action === "serve") {
-            const combo = Array.from(this.selectedIngredients).join(", ");
-            this.engine.show("&gt; You serve the drink with: " + combo + ".");
-
-            if (this.selectedIngredients.has("Mint") && this.selectedIngredients.has("Honey")) {
+            const combo = Array.from(this.selectedIngredients);
+            const comboStr = combo.join(", ");
+    
+            if (combo.length === 0) {
+                this.engine.show("&gt; You slide over... nothing.");
+                this.engine.show("The customer blinks and looks at you as if you've gone insane.'");
+            } 
+            else if (combo.includes("Mint") && combo.includes("Honey")) {
                 this.engine.setFlag("HeardDrawerCode");
+                this.engine.show("&gt; You serve the drink with: " + comboStr + ".");
                 this.engine.show("The customer takes a sip, pauses, and then whispers... 'This tastes just like your grandma’s... The café reopened on 09/17, I remember it like it was yesterday... blah blah blah...'");
-            } else {
-                this.engine.show("The customer thanks you, but offers no insight.");
+            } 
+            else if (combo.includes("Espresso") && combo.includes("Milk")) {
+                this.engine.show("&gt; You serve the drink with: " + comboStr + ".");
+                this.engine.show("They sip it and nod slowly. 'A classic. Safe. Reminds me of my dentist’s office.'");
+            } 
+            else if (combo.includes("Honey") && combo.length === 1) {
+                this.engine.show("&gt; You serve the drink with: " + comboStr + ".");
+                this.engine.show("They frown. 'So... just honey?'");
+            } 
+            else if (combo.includes("Milk") && combo.length === 1) {
+                this.engine.show("&gt; You serve the drink with: " + comboStr + ".");
+                this.engine.show("They frown. 'So... just milk?'");
+            } 
+            else {
+                this.engine.show("&gt; You serve the drink with: " + comboStr + ".");
+                this.engine.show("They take a sip and pause. '...Interesting. Not good. But interesting.'");
             }
-
+    
             this.selectedIngredients.clear();
-
+    
             this.engine.gotoScene(Location, "CafeFront");
         }
     }
