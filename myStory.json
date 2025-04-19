@@ -6,7 +6,7 @@
     "Locations": {
 
         "CafeFront": {
-            "Body": "You stand at the front of your families cafe.",
+            "Body": "You stand at the front of the cafe, staring at the spider and his family in the corner.",
             "Choices": [
                 {
                     "Text": "Talk to customer",
@@ -24,7 +24,7 @@
         },
 
         "CustomerOrder": {
-            "Body": "You chat with a regular. They say: 'Back in the day, your grandmother always made me this amazing sweet minty drink that always hit the spot.'",
+            "Body": "You chat up a regular who’s somehow always here. They say: 'Back in the day, your grandmother always made me this amazing sweet minty drink that always hit the spot.'",
             "Choices": [
                 {
                     "Text": "Go to the drink counter",
@@ -44,7 +44,7 @@
         },
 
         "IngredPantry": {
-            "Body": "",
+            "Body": "You take a look in the pantry. Its sparsely stocked with some items you stole from your parents fridge.",
             "Choices": [
                 {
                     "Text": "Grab milk",
@@ -80,19 +80,19 @@
                     "Text": "Check storage closet",
                     "Target": "StorageCloset"
                 },
-                {
-                    "Text": "Go back to the cafe front",
-                    "Target": "CafeFront"
-                },
                 { 
                     "Text": "Try a code to unlock drawer", 
                     "Target": "BackRoom"
+                },
+                {
+                    "Text": "Go back to the cafe front",
+                    "Target": "CafeFront"
                 }
             ]
         },
 
         "GardenLocked": {
-            "Body": "The gate to the garden is locked. You might need a key...",
+            "Body": "You jiggle the garden gate. It’s very locked.  You might need a key...",
             "Choices": [
                 {
                     "Text": "Unlock gate with key",
@@ -107,10 +107,10 @@
         },
 
         "Garden": {
-            "Body": "You unlock the gate and step into the garden. The scent of fresh herbs fills the air.",
+            "Body": "You unlock the gate and step into an overgrown paradise. The scent of fresh herbs fills the air.",
             "Choices": [
                 {
-                "Text": "Pink mint leaves",             
+                "Text": "Pick mint leaves",             
                 "Target": "Garden",
                 "GivesItem": "Mint",
                 "RequiresItem": null
@@ -123,10 +123,15 @@
         },
 
         "StorageCloset": {
-            "Body": "The storage closet is cluttered. Something shiny catches your eye.",
+            "Body": "The storage room is a chaotic mess of old coffee tins, napkins, and your bad report cards still safely hidden away from your parents. Something metal glints underneath the stacks of menus.",
             "Choices": [
+                {
+                    "Text": "Pick up old coffee tins",
+                    "Target": "BackRoom",
+                    "GivesItem": "Espresso"
+                },
                 { 
-                    "Text": "Pick up the rusty garden key", 
+                    "Text": "Move the menus", 
                     "Target": "BackRoom", 
                     "GivesItem": "GardenKey" 
                 }
@@ -134,7 +139,7 @@
         },
 
         "DrawerUnlocked": {
-            "Body": "Inside the drawer, you find the old recipe book!"
+            "Body": "You open the drawer and there it is — the legendary recipe book!"
         }
 
     }

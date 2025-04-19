@@ -4,8 +4,9 @@ class Start extends Scene {
         this.engine.addChoice("Begin the story");
         this.engine.show(`
             <p>You’ve recently taken over your family’s old cafe in hopes of bringing it back to life.</p>
+            <p>The cafe is dusty and business is... almost nonexistent.  But rumor has it that a notoriously popular picky food critic is dropping by soon. </p>
             <p>Your grandparents mentioned that somewhere in the building lies a lost recipe book filled with their most popular drinks but neither can remember where it was last placed...</p>
-            <p>With an important food critic visiting soon, your goal is to <strong>find that recipe book</strong> to get the cafe back on its feet.</p>
+            <p>You've made it your mission to find that book, revive the café, and make your grandparents proud of their favorite grandchild.</p>
         `);
     }
 
@@ -17,6 +18,8 @@ class Start extends Scene {
 class Location extends Scene {
     create(key) {
         const locationData = this.engine.storyData.Locations[key];
+
+        this.engine.show("<br>");
         this.engine.show(locationData.Body);
 
         if (locationData.Choices) {
@@ -49,7 +52,7 @@ class Location extends Scene {
 
         } else if (choice.Text.startsWith("Try a code")) {
             if (this.engine.hasFlag("HeardDrawerCode")) {
-                this.engine.show("&gt; You enter 0912. The drawer opens!");
+                this.engine.show("&gt; You type in 0917. The drawer gives a satisfying *click* — success!");
                 this.engine.addItem("RecipeBook");
                 this.engine.gotoScene(Location, "DrawerUnlocked");
             } else {
@@ -89,7 +92,7 @@ class DrinkCounter extends Location {
 
             if (this.selectedIngredients.has("Mint") && this.selectedIngredients.has("Honey")) {
                 this.engine.setFlag("HeardDrawerCode");
-                this.engine.show("Customer smiles and recalls a story: 'The café reopened on 0912'...");
+                this.engine.show("The customer takes a sip, pauses, and then whispers... 'This tastes just like your grandma’s... The café reopened on 09/17, I remember it like it was yesterday... blah blah blah...'");
             } else {
                 this.engine.show("The customer thanks you, but offers no insight.");
             }
